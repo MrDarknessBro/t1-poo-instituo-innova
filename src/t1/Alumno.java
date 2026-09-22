@@ -9,7 +9,7 @@ package t1;
  * @author UCA40417
  */
 public class Alumno {
- private String nombre;
+   private String nombre;
     private String tipoDocumento; 
     private String numeroDocumento; 
     private char nivelSocioeconomico; 
@@ -56,11 +56,11 @@ public class Alumno {
             throw new IllegalArgumentException("El número de documento no puede estar vacío.");
         }
 
-        if (this.tipoDocumento != null && this.tipoDocumento.equals("DNI")) {
+        if (this.tipoDocumento.equals("DNI")) {
             if (!numeroDocumento.matches("^\\d{8}$")) {
                 throw new IllegalArgumentException("El DNI debe tener exactamente 8 dígitos numéricos.");
             }
-        } else if (this.tipoDocumento != null && this.tipoDocumento.equals("Residencia")) {
+        } else if (this.tipoDocumento.equals("Residencia")) {
             if (!numeroDocumento.matches("^\\d{11}$")) {
                 throw new IllegalArgumentException("La Residencia debe tener exactamente 11 dígitos numéricos.");
             }
