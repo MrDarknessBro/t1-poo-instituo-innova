@@ -9,7 +9,7 @@ package t1;
  * @author UCA40417
  */
 public class Alumno {
-   private String nombre;
+ private String nombre;
     private String tipoDocumento; 
     private String numeroDocumento; 
     private char nivelSocioeconomico; 
@@ -89,5 +89,32 @@ public class Alumno {
             throw new IllegalArgumentException("Tipo de beca inválido.");
         }
         this.tipoBeca = tipoBeca.substring(0, 1).toUpperCase() + tipoBeca.substring(1).toLowerCase();
+    }
+
+    public double calcularPensionFinal() {
+        double tarifaBase = 0.0;
+        switch (this.nivelSocioeconomico) {
+            case 'A': tarifaBase = 1200.00; break;
+            case 'B': tarifaBase = 800.00; break;
+            case 'C': tarifaBase = 500.00; break;
+        }
+
+        double descuento = 1.0; 
+        if (this.tipoBeca.equals("Parcial")) {
+            descuento = 0.50; 
+        } else if (this.tipoBeca.equals("Total")) {
+            descuento = 0.0; 
+        }
+
+        return tarifaBase * descuento;
+    }
+
+    @Override
+    public String toString() {
+        return "Alumno [Nombre=" + nombre + 
+               ", Doc=" + tipoDocumento + " (" + numeroDocumento + ")" +
+               ", Nivel=" + nivelSocioeconomico + 
+               ", Beca=" + tipoBeca + 
+               ", Pensión Final=$" + calcularPensionFinal() + "]";
     }
 }
